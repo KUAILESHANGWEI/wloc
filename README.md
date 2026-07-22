@@ -39,6 +39,8 @@ https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wl
 
 > 首次导入「设置地理位置」时，请填写你从本仓库部署得到的 Worker 根地址，例如 `https://你的项目.你的子域名.workers.dev`，末尾不要加 `/`。快捷指令会调用该地址的 `/api/parse`，不依赖上游作者的在线服务。
 
+快捷指令的可审计未签名源码保存在 [`shortcuts/unsigned`](shortcuts/unsigned)，Release 中提供由 Apple 官方 `shortcuts sign --mode anyone` 生成的签名版本；需要重新签名时运行 `bash scripts/sign-shortcuts.sh`。
+
 **用法**
 
 - **设置位置：** 在地图 App 里选好位置（长按地图选点）→ 共享 → 选「wloc 设置地理位置」即可切换。
