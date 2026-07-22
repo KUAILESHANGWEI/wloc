@@ -39,6 +39,8 @@ https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wl
 
 > 首次导入「设置地理位置」时，请填写你从本仓库部署得到的 Worker 根地址，例如 `https://你的项目.你的子域名.workers.dev`，末尾不要加 `/`。快捷指令会调用该地址的 `/api/parse`，不依赖上游作者的在线服务。
 
+本仓库已部署可直接使用的实例：`https://wloc-spoofer.qiusir816.workers.dev`。该地址已预填在签名快捷指令中；导入时直接接受默认值即可，也可以替换成你自己的部署地址。
+
 快捷指令的可审计未签名源码保存在 [`shortcuts/unsigned`](shortcuts/unsigned)，Release 中提供由 Apple 官方 `shortcuts sign --mode anyone` 生成的签名版本；需要重新签名时运行 `bash scripts/sign-shortcuts.sh`。
 
 **用法**
@@ -177,7 +179,7 @@ https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wl
 <details>
 <summary><b>自部署 Worker（推荐）</b></summary>
 
-为避免依赖上游作者控制的在线实例，请从本仓库部署自己的实例。
+当前公开实例：`https://wloc-spoofer.qiusir816.workers.dev`。它部署自本仓库并由 `KUAILESHANGWEI` 对应的 Cloudflare 账户控制；也可以按下方步骤部署自己的实例。
 
 **一键部署（Workers）：**
 
