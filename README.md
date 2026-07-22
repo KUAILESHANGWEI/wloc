@@ -34,8 +34,10 @@ https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wl
 
 直接用快捷指令切换 / 清除定位，无需打开选点页面：
 
-- **wloc 设置地理位置**：https://www.icloud.com/shortcuts/a82717d8fdad4e6280866fcf911173f7
-- **wloc 清理恢复位置**：https://www.icloud.com/shortcuts/f42632d406504f24a2cd163af4fe012f
+- **wloc 设置地理位置**：https://github.com/KUAILESHANGWEI/wloc/releases/latest/download/WLOC-Set-Location.shortcut
+- **wloc 清理恢复位置**：https://github.com/KUAILESHANGWEI/wloc/releases/latest/download/WLOC-Clear-Location.shortcut
+
+> 首次导入「设置地理位置」时，请填写你从本仓库部署得到的 Worker 根地址，例如 `https://你的项目.你的子域名.workers.dev`，末尾不要加 `/`。快捷指令会调用该地址的 `/api/parse`，不依赖上游作者的在线服务。
 
 **用法**
 

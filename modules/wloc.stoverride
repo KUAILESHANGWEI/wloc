@@ -1,5 +1,5 @@
 name: Apple WLOC 定位修改
-desc: "修改 Apple 网络定位返回坐标 | 快捷指令(推荐): 设置地理位置 https://www.icloud.com/shortcuts/a82717d8fdad4e6280866fcf911173f7 清理恢复位置 https://www.icloud.com/shortcuts/f42632d406504f24a2cd163af4fe012f | 项目主页: https://github.com/KUAILESHANGWEI/wloc"
+desc: "修改 Apple 网络定位返回坐标 | 快捷指令(推荐): 设置地理位置 https://github.com/KUAILESHANGWEI/wloc/releases/latest/download/WLOC-Set-Location.shortcut 清理恢复位置 https://github.com/KUAILESHANGWEI/wloc/releases/latest/download/WLOC-Clear-Location.shortcut | 项目主页: https://github.com/KUAILESHANGWEI/wloc"
 author: Yu9191 Rewrite
 homepage: https://github.com/KUAILESHANGWEI/wloc
 icon: https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/wloc.jpg

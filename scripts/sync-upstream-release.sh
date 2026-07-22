@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 # This is the only place where the upstream repository is intentionally kept.
 UPSTREAM_REPO="${UPSTREAM_REPO:-Yu9191/wloc}"
 TARGET_REPO="${TARGET_REPO:-${GITHUB_REPOSITORY:-KUAILESHANGWEI/wloc}}"
@@ -26,6 +28,8 @@ while IFS= read -r -d '' asset; do
       s{https://github\.com/Yu9191/wloc}{"https://github.com/" . $target}ge;
       s{https://wloc-pages\.pages\.dev/?}{"https://github.com/" . $target}ge;
       s{https://wloc-spoofer\.wloc\.workers\.dev/?}{"https://github.com/" . $target}ge;
+      s{https://www\.icloud\.com/shortcuts/a82717d8fdad4e6280866fcf911173f7}{"https://github.com/" . $target . "/releases/latest/download/WLOC-Set-Location.shortcut"}ge;
+      s{https://www\.icloud\.com/shortcuts/f42632d406504f24a2cd163af4fe012f}{"https://github.com/" . $target . "/releases/latest/download/WLOC-Clear-Location.shortcut"}ge;
     ' "${asset}"
   fi
 done < <(find "${work_dir}" -type f -print0)
@@ -48,6 +52,11 @@ while IFS= read -r -d '' asset; do
 done < <(find "${work_dir}" -type f -print0)
 if ((${#assets[@]})); then
   gh release upload "${tag}" "${assets[@]}" --repo "${TARGET_REPO}" --clobber
+fi
+
+signed_shortcuts=("${root_dir}"/shortcuts/signed/*.shortcut)
+if [[ -e "${signed_shortcuts[0]}" ]]; then
+  gh release upload "${tag}" "${signed_shortcuts[@]}" --repo "${TARGET_REPO}" --clobber
 fi
 
 echo "Synced ${#assets[@]} assets for ${tag} to ${TARGET_REPO}"
