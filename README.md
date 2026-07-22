@@ -11,19 +11,19 @@
 ## 订阅地址
 
 **Surge:**
-https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.sgmodule
+https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wloc.sgmodule
 
 **Quantumult X:**
-https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.conf
+https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wloc.conf
 
 **Loon:**
-https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.lpx
+https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wloc.lpx
 
 **Stash:**
-https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.stoverride
+https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wloc.stoverride
 
 **Shadowrocket(小火箭):**
-https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.module
+https://raw.githubusercontent.com/KUAILESHANGWEI/wloc/refs/heads/main/modules/wloc.module
 
 > Egern 可直接使用 Surge 模块
 > Stash 请直接订阅上面的 `.stoverride`，无需用 Script Hub 转换
@@ -52,17 +52,17 @@ https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.modul
 
 ### 关于地图链接解析（worker）
 
-为了让苹果地图和高德走同一条流程，链接统一发给 `wloc-spoofer.wloc.workers.dev/api/parse` 解析：
+为了让苹果地图和高德走同一条流程，链接统一发给解析 Worker 的 `/api/parse` 接口。为避免依赖任何上游作者控制的部署，请按下文从本仓库一键部署自己的 Worker，并在快捷指令中替换为自己的域名：
 
 - **高德**：分享出来是短链，真实坐标只藏在 302 跳转的 `Location` 头里，且是 GCJ-02 偏移坐标。快捷指令既读不到跳转头、也难做坐标换算，所以由 worker 跟跳转 → 抠坐标 → GCJ-02→WGS84 → 返回经纬度。
 - **苹果地图**：链接里直接带 `coordinate=纬度,经度`，但在**中国大陆同样是 GCJ-02 偏移坐标**，所以和高德一样由 worker 做 GCJ-02→WGS84 换算后返回；境外坐标会自动跳过换算（`out_of_china` 判断）原样返回。除了统一坐标系，走同一接口也方便统一处理短链、文本夹链接、名称解码等。
 
 **隐私：** `/api/parse` 是纯转发解析——收到链接 → 跟跳转 → 解析坐标 → 返回 JSON，全程不写任何存储、不记日志、不缓存，处理完即丢。
 
-**不放心可自行部署：** worker 源码完全开源，可自己部署一份替换上面的地址：
+**建议自行部署：** Worker 源码完整保存在本仓库：
 
 - 解析逻辑：[`worker/src/parse.js`](worker/src/parse.js)，路由：[`worker/src/index.js`](worker/src/index.js)
-- 部署后把快捷指令里的 `wloc-spoofer.wloc.workers.dev` 换成你自己的 worker 域名即可。
+- 部署后把快捷指令里原有的解析服务域名换成你自己的 Worker 域名即可。
 
 ---
 
@@ -173,14 +173,11 @@ https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.modul
 <details>
 <summary><b>自部署 Worker（推荐）</b></summary>
 
-公共选点页面有请求上限，建议部署自己的实例：
-
-- **Workers**: `https://wloc-spoofer.wloc.workers.dev/`
-- **Pages**: `https://wloc-pages.pages.dev/`
+为避免依赖上游作者控制的在线实例，请从本仓库部署自己的实例。
 
 **一键部署（Workers）：**
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Yu9191/wloc/tree/main/worker)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/KUAILESHANGWEI/wloc/tree/main/worker)
 
 > 一键部署仅支持 Workers 模式，点击按钮后按提示授权即可完成部署。
 
@@ -188,7 +185,7 @@ https://raw.githubusercontent.com/Yu9191/wloc/refs/heads/main/modules/wloc.modul
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/Yu9191/wloc.git
+git clone https://github.com/KUAILESHANGWEI/wloc.git
 cd wloc/worker
 
 # 2. 安装依赖
@@ -211,7 +208,7 @@ npm run deploy
 Pages 部署不支持一键按钮，需要手动执行：
 
 ```bash
-git clone https://github.com/Yu9191/wloc.git
+git clone https://github.com/KUAILESHANGWEI/wloc.git
 cd wloc/worker
 npm install
 npx wrangler pages deploy dist --project-name <自定义项目名>

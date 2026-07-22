@@ -1,0 +1,25 @@
+name: Sync upstream release assets
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream-release
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out isolated repository
+        uses: actions/checkout@v4
+
+      - name: Mirror latest release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/sync-upstream-release.sh
