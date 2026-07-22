@@ -18,7 +18,7 @@ with shortcut.open("rb") as source:
 
 question = workflow["WFWorkflowImportQuestions"][0]
 action = workflow["WFWorkflowActions"][question["ActionIndex"]]
-if action["WFWorkflowActionIdentifier"] != "is.workflow.actions.text":
+if action["WFWorkflowActionIdentifier"] != "is.workflow.actions.gettext":
     raise SystemExit("Worker URL action was not found at the configured import-question index")
 
 action["WFWorkflowActionParameters"][question["ParameterKey"]] = worker_url
